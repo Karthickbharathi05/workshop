@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Tech Education Webinars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #0e1323;
+            --darker-bg: #080d1d;
+            --card-bg: #1a1f30;
+            --card-light: #161b2b;
+            --text-primary: #dee1f9;
+            --text-secondary: #c7c4d7;
+            --text-muted: #908fa0;
+            --accent-blue: #4cd7f6;
+            --accent-purple: #8083ff;
+            --light-bg: #f8fafc;
+            --border-color: #25293a;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1 { font-size: 56px; font-weight: 800; line-height: 64px; letter-spacing: -1.4px; }
+        h2 { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -1px; }
+        h3 { font-size: 28px; font-weight: 700; line-height: 36px; }
+        h4 { font-size: 20px; font-weight: 600; line-height: 28px; }
+        p { font-size: 16px; font-weight: 400; line-height: 24px; }
+
+        /* Containers */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #8083ff, #c0c1ff);
+            color: #07006c;
+            box-shadow: 0 0 14px rgba(99, 102, 241, 0.38);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(37, 41, 58, 0.9);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .btn-light {
+            background: var(--darker-bg);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ============ SECTION 1: HERO ============ */
+        .hero {
+            background: var(--darker-bg);
+            padding: 80px 32px 112px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -160px;
+            left: 3.52%;
+            right: 53.52%;
+            height: 550px;
+            background: rgba(128, 131, 255, 0.15);
+            border-radius: 9999px;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 2.82%;
+            right: -100px;
+            top: 33.33%;
+            width: 480px;
+            background: rgba(76, 215, 246, 0.1);
+            border-radius: 9999px;
+            filter: blur(65px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--border-color);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            width: fit-content;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+        }
+
+        .pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #c0c1ff, #4cd7f6, #e1e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 672px;
+            color: var(--text-secondary);
+            line-height: 1.62;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .trust-strip {
+            display: flex;
+            gap: 24px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .trust-item {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-card {
+            position: relative;
+            width: 100%;
+            max-width: 448px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, rgb(128, 131, 255), rgb(3, 181, 211), rgb(195, 192, 255));
+            border-radius: 24px;
+            filter: blur(12px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-card-inner {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .educator-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--darker-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .educator-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .educator-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #080d1d, rgba(8, 13, 29, 0), rgba(8, 13, 29, 0.2));
+        }
+
+        .floating-stat {
+            position: absolute;
+            top: -20px;
+            left: -16px;
+            backdrop-filter: blur(6px);
+            background: rgba(47, 52, 70, 0.95);
+            padding: 10px 16px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+            color: var(--text-primary);
+        }
+
+        .overlay-pill {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            backdrop-filter: blur(6px);
+            background: rgba(47, 52, 70, 0.9);
+            padding: 14px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .overlay-pill-left {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .overlay-pill-dot {
+            width: 12px;
+            height: 12px;
+            background: #ffb4ab;
+            border-radius: 50%;
+        }
+
+        .overlay-pill-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+        }
+
+        .overlay-pill-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .overlay-pill-right {
+            background: var(--card-bg);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 { font-size: 44px; line-height: 52px; }
+            h2 { font-size: 32px; line-height: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 16px 80px;
+            }
+
+            h1 { font-size: 36px; line-height: 44px; }
+            h2 { font-size: 28px; line-height: 36px; }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ============ SECTION 2: WEBINAR INFO ============ */
+        .webinar-section {
+            background: var(--dark-bg);
+            padding: 112px 32px;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            line-height: 1.62;
+        }
+
+        .webinar-hero-card {
+            background: var(--card-light);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .webinar-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .detail-box {
+            background: var(--card-bg);
+            padding: 14px;
+            border-radius: 12px;
+            display: flex;
+            gap: 14px;
+        }
+
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: #2f3446;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .detail-content h4 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .detail-content p {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .action-column {
+            background: rgba(47, 52, 70, 0.6);
+            border-radius: 12px;
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .seats-progress {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .seats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .seats-header span:first-child {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            color: var(--text-primary);
+        }
+
+        .seats-header span:first-child::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .seats-header span:last-child {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--card-bg);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 76.8%;
+            background: linear-gradient(to right, #03b5d3, #4cd7f6, #c0c1ff);
+            border-radius: 9999px;
+        }
+
+        .seats-footer {
+            text-align: right;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .reserve-btn {
+            background: #c0c1ff;
+            color: #1000a9;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            border: none;
+        }
+
+        .reserve-btn:hover {
+            background: #dee1f9;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background: #2f3446;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card h4 {
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .benefit-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .webinar-hero-card {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .webinar-section {
+                padding: 80px 16px;
+            }
+
+            .webinar-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============ SECTION 3: YOUTUBE ============ */
+        .youtube-section {
+            background: var(--light-bg);
+            padding: 112px 32px;
+        }
+
+        .youtube-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+
+        .youtube-header h2 {
+            color: #0f172a;
+        }
+
+        .youtube-header p {
+            color: #475569;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-category {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4f46e5;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .video-content h4 {
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .youtube-cta {
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .youtube-section {
+                padding: 80px 16px;
+            }
+
+            .youtube-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============ SECTION 4: REGISTRATION ============ */
+        .registration-section {
+            background: var(--darker-bg);
+            padding: 128px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 600px;
+            background: linear-gradient(40.6deg, rgba(192, 193, 255, 0.1), rgba(76, 215, 246, 0.1), rgba(128, 131, 255, 0.15));
+            border-radius: 9999px;
+            filter: blur(70px);
+            z-index: 0;
+        }
+
+        .registration-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .registration-title {
+            text-align: center;
+            margin-bottom: 56px;
+            max-width: 672px;
+        }
+
+        .registration-title h2 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .registration-title p {
+            color: var(--text-secondary);
+            line-height: 1.62;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1280px;
+        }
+
+        .pricing-card {
+            background: var(--card-light);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-tag {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 72px;
+            letter-spacing: -1.8px;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, white, #4cd7f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-note {
+            display: inline-block;
+            background: rgba(76, 215, 246, 0.15);
+            color: var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            color: var(--accent-blue);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .security-note {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .security-note p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .form-card > p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-group label .optional {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 16px;
+            background: var(--card-light);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            background: rgba(76, 215, 246, 0.05);
+            box-shadow: inset 0 0 0 2px var(--accent-blue);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(to right, #8083ff, #c0c1ff);
+            color: #07006c;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .error-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .registration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .registration-section {
+                padding: 80px 16px;
+            }
+
+            .pricing-card,
+            .form-card {
+                padding: 32px 24px;
+            }
+        }
+
+        /* ============ SECTION 5: FAQ ============ */
+        .faq-section {
+            background: var(--dark-bg);
+            padding: 112px 32px;
+        }
+
+        .faq-container {
+            max-width: 896px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button {
+            width: 100%;
+            padding: 24px;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background: rgba(76, 215, 246, 0.05);
+        }
+
+        .accordion-button.active {
+            background: rgba(76, 215, 246, 0.1);
+        }
+
+        .accordion-icon {
+            width: 12px;
+            height: 7.4px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .accordion-button.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 24px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .accordion-button.active + .accordion-content {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+
+        .contact-card {
+            background: var(--card-light);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+        }
+
+        .contact-card strong {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 80px 16px;
+            }
+
+            .accordion-button {
+                padding: 20px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SECTION 1: HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="pill">FREE TECH EDUCATION • LIVE WEBINARS</div>
+                    <h1>Learn Tech. <span class="gradient-text">Build Skills. Stay Ahead.</span></h1>
+                    <p class="hero-description">Practical tech education for people who want to understand, create, and grow. Learn through easy-to-follow videos and live online webinars — without the unnecessary jargon.</p>
+                    <div class="cta-group">
+                        <button class="btn btn-primary">Join the Free Webinar →</button>
+                        <button class="btn btn-secondary">▶ Watch on YouTube</button>
+                    </div>
+                    <div class="trust-strip">
+                        <div class="trust-item">✓ 100% Free Webinars</div>
+                        <div class="trust-item">✓ Practical Learning</div>
+                        <div class="trust-item">✓ Beginner Friendly</div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="floating-stat">📊 125,000+ Subscribers • 45+ Free Webinars</div>
+                    <div class="hero-card">
+                        <div class="hero-card-inner">
+                            <div class="educator-image">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=448&h=448&fit=crop" alt="Tech Educator">
+                            </div>
+                            <div class="overlay-pill">
+                                <div class="overlay-pill-left">
+                                    <div class="overlay-pill-dot"></div>
+                                    <div>
+                                        <div class="overlay-pill-label">LIVE WEBINAR</div>
+                                        <div class="overlay-pill-title">Learn. Ask. Build.</div>
+                                    </div>
+                                </div>
+                                <div class="overlay-pill-right">₹0 • Free</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: WEBINAR INFO -->
+    <section class="webinar-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Learn Live. Ask Questions. Get Clear Answers.</h2>
+                <p>Watching videos is great. But sometimes, you need to ask questions, see things explained step by step, and learn directly from someone who understands the topic. That's what these live webinars are all about.</p>
+            </div>
+
+            <div class="webinar-hero-card">
+                <div>
+                    <div style="display: inline-block; background: rgba(76, 215, 246, 0.15); padding: 4px 12px; border-radius: 6px; margin-bottom: 16px;">
+                        <span style="font-size: 12px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase;">📌 UPCOMING WEBINAR</span>
+                    </div>
+                    <h3>Building Real-World AI Agents & Automation: Zero to Deployed</h3>
+                    <p style="color: var(--text-secondary); margin-top: 16px;">Learn modern AI workflows, LLM tool integration, and practical automation from the basics and understand how it works in real-world situations.</p>
+                    
+                    <div class="webinar-details-grid">
+                        <div class="detail-box">
+                            <div class="detail-icon">📅</div>
+                            <div class="detail-content">
+                                <h4>DATE</h4>
+                                <p>Saturday, March 28, 2026</p>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <div class="detail-icon">🕐</div>
+                            <div class="detail-content">
+                                <h4>TIME</h4>
+                                <p>6:30 PM – 8:00 PM IST</p>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <div class="detail-icon">💻</div>
+                            <div class="detail-content">
+                                <h4>MODE</h4>
+                                <p>Online (Live Zoom + Private Stream)</p>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <div class="detail-icon">🎟️</div>
+                            <div class="detail-content">
+                                <h4>ENTRY</h4>
+                                <p>100% Free (Limited to 500 Seats)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-column">
+                    <div class="seats-progress">
+                        <div class="seats-header">
+                            <span>Seats filling fast</span>
+                            <span>384 / 500 claimed</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="seats-footer">116 seats left today</div>
+                    </div>
+                    <button class="btn reserve-btn">Reserve My Free Seat →</button>
+                </div>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>PRACTICAL<br>KNOWLEDGE</h4>
+                    <p>Learn concepts through real examples instead of unnecessary theory.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h4>LIVE Q&A</h4>
+                    <p>Ask questions during the session and get them addressed live.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>BEGINNER-FRIENDLY</h4>
+                    <p>Technical topics explained clearly without assuming you're already an expert.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h4>USEFUL TAKEAWAYS</h4>
+                    <p>Leave each webinar with practical knowledge, resources, and ideas you can use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: YOUTUBE -->
+    <section class="youtube-section">
+        <div class="container">
+            <div class="youtube-header">
+                <div>
+                    <h2>Learn Something New. One Video at a Time.</h2>
+                    <p>The YouTube channel is where technology is explained without making it unnecessarily complicated. From tutorials and how-to guides to useful tech tips and educational content, explore videos designed to help you understand technology.</p>
+                </div>
+                <button class="btn btn-light">Visit YouTube Channel →</button>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1677442d019cecf8f80a27fcdcb25c33?w=400&h=225&fit=crop" alt="Video 1" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">18:24</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">AI & Workflows</span>
+                        <h4>Understanding AI Tools: A Beginner's Guide</h4>
+                        <div class="video-stats">👁️ 48K views</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=225&fit=crop" alt="Video 2" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">14:10</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">Career & Trends</span>
+                        <h4>5 Tech Skills You Should Learn in 2026</h4>
+                        <div class="video-stats">👁️ 92K views</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=400&h=225&fit=crop" alt="Video 3" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">22:45</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">Hands-on Tutorial</span>
+                        <h4>How to Build Your First AI Workflow</h4>
+                        <div class="video-stats">👁️ 63K views</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop" alt="Video 4" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">16:30</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">Fundamentals</span>
+                        <h4>Tech Concepts Explained Simply</h4>
+                        <div class="video-stats">👁️ 35K views</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1516321496399-112d8b3f1d07?w=400&h=225&fit=crop" alt="Video 5" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">12:15</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">Productivity</span>
+                        <h4>Useful Tools Every Creator Should Know</h4>
+                        <div class="video-stats">👁️ 41K views</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop" alt="Video 6" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        <div class="video-overlay"></div>
+                        <div class="play-btn">▶</div>
+                        <div class="video-duration">20:05</div>
+                    </div>
+                    <div class="video-content">
+                        <span class="video-category">Dev & Automation</span>
+                        <h4>Beginner's Guide to Automation</h4>
+                        <div class="video-stats">👁️ 54K views</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="youtube-cta">
+                <button class="btn btn-light">🔴 Visit YouTube Channel →</button>
+                <p style="color: #64748b; margin-top: 12px;">Subscribe to stay updated whenever a new video goes live.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: REGISTRATION -->
+    <section class="registration-section">
+        <div class="registration-content">
+            <div class="registration-title">
+                <span class="pill" style="margin: 0 auto 12px; display: block; width: fit-content;">🎁 ZERO COST • INSTANT ACCESS</span>
+                <h2>Your Seat Costs ₹0.</h2>
+                <p>Yes, the webinar is completely free. No payment. No hidden charges. No complicated process. If the topic interests you, simply register and save your seat.</p>
+            </div>
+
+            <div class="registration-grid">
+                <div class="pricing-card">
+                    <div>
+                        <div class="price-tag">₹0</div>
+                        <div class="price-note">100% Free • No Card Required</div>
+                        <div class="benefits-list">
+                            <div class="benefit-item">Full access to the live webinar</div>
+                            <div class="benefit-item">Live Q&A session</div>
+                            <div class="benefit-item">Practical demonstrations and explanations</div>
+                            <div class="benefit-item">Useful learning resources & code snippets</div>
+                            <div class="benefit-item">Opportunity to learn directly during the session</div>
+                        </div>
+                    </div>
+                    <div class="security-note">
+                        <span style="font-size: 14px;">🔒</span>
+                        <p>We respect your inbox. Zero spam, only webinar join links.</p>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Reserve Your Free Spot</h3>
+                    <p>Just enter your basic details, complete the registration, and you're in.</p>
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="rahul@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210 (for WhatsApp reminder)">
+                        </div>
+                        <button type="submit" class="submit-btn">Register for Free →</button>
+                        <div class="form-footer">🔒 100% privacy protected • Instant confirmation email</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: FAQ -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+                <span class="pill" style="margin: 0 auto 12px; display: block; width: fit-content;">❓ HAVE QUESTIONS?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our free webinars and YouTube learning.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        Is the webinar really free?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Yes, absolutely! The webinar is 100% free with no hidden costs or payment required. We believe education should be accessible to everyone.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        Who can attend the webinar?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Anyone interested in learning! Whether you're a complete beginner or have some experience, our webinars are designed to be beginner-friendly and practical for everyone.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        Do I need prior technical knowledge?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">No! Our webinars are specifically designed for beginners. We explain technical concepts clearly without assuming any prior knowledge. Come as you are!</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        How do I register?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Simply fill out the registration form with your name and email. The form is just below. You'll receive an instant confirmation email with the webinar link.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        Will I receive the webinar link?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Yes! You'll receive the webinar link via email immediately after registration. We'll also send you a reminder before the session starts.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        Can I ask questions during the webinar?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Absolutely! Live Q&A is a key part of every webinar. You can ask questions anytime during the session through chat or live interaction.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        What if I miss the live webinar?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Recorded sessions are made available to registered attendees. You'll receive the recording link via email if you can't make the live session.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(this)">
+                        How can I stay updated about new webinars and videos?
+                        <svg class="accordion-icon" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">Subscribe to our YouTube channel and confirm your email after registration. You'll get instant notifications about new webinars and videos!</div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <p>Still have questions? Reach out directly via <strong>hello@arjunverma.tech</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success & Error Messages -->
+    <div class="success-message" id="successMessage">✓ Registration successful! Check your email for the webinar link.</div>
+    <div class="error-message" id="errorMessage">✗ Registration failed. Please try again.</div>
+
+    <script>
+        const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXYeymnBjqNJRlyQqGPbeHMVVGKnuVRjP4KO1_hk-25tBMOXGV9Jt2KR0-81v3s5vS/exec';
+
+        function showMessage(message, isSuccess = true) {
+            const msgElement = isSuccess ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            msgElement.style.display = 'block';
+            setTimeout(() => {
+                msgElement.style.display = 'none';
+            }, 5000);
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!name || !email) {
+                showMessage('Please fill in all required fields', false);
+                return;
+            }
+
+            const params = new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            const url = APPSCRIPT_URL + '?' + params.toString();
+
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                showMessage('✓ Registration successful! Check your email for the webinar link.', true);
+                document.getElementById('registrationForm').reset();
+            })
+            .catch(() => {
+                showMessage('✗ An error occurred. Please try again.', false);
+            });
+        });
+
+        function toggleAccordion(button) {
+            button.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
